@@ -1,0 +1,34 @@
+body {
+	padding: 0 !important;
+}
+
+.g_header, .cha-fly, .j_bottom_comment_area, .user-links-wrap, .g_ad_ph, .iso-area, .cha-page-ft {
+	display: none !important;
+}
+
+.cha-tit p {
+	display: none !important;
+}
+
+.cha-page {
+	max-width: 100% !important;
+	border: none !important;
+}
+
+.cha-page-in {
+	padding: 1px 80px 30px 35px;
+	font-family: Merriweather, "Nunito Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size: 18px;
+}
+
+.cha-words {
+    line-height: 1.6;
+}
+
+.cha-words p+p {
+    margin-top: 10px;
+}
+
+em {
+	font-family: Merriweather, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}

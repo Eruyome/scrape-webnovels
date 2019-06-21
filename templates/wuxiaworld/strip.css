@@ -1,0 +1,62 @@
+#pg-gdpr, #sidebar, #bookmark-chapter, #comments, #header, #navbar, .navbar {
+	display: none !important;
+}
+
+div.footer, div.panel-success, div.well, .nav-bar-area, .top-bar-area, .font-resize, .logo, .chapter-nav {
+	display: none !important;	
+}
+
+div.section-content {
+	font-family: Merriweather, "Nunito Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size: 16px !important;
+	line-height: 24px !important;
+}
+
+em {
+	font-family: Merriweather, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+div.section-content .caption {
+	font-size: 24px !important;
+}
+
+div.section-content .caption img {
+	width: 18px !important;
+	height: 18px !important;
+}
+
+.panel-default, .section-content, .section {
+	border: none !important;
+	background-color: #fff !important;
+	color: #000 !important;
+}
+
+.text-spoiler {
+	filter: none !important;
+}
+
+hr {
+    margin-top: 11px !important;
+    margin-bottom: 11px !important;
+}
+
+p {
+    margin: 0 0 7px !important;
+}
+
+.panel {
+	padding: 15px !important;
+}
+
+.p-15 {
+	padding: 0 !important;
+}
+
+.section {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+hr:last-of-type {
+	display: none !important;
+}
