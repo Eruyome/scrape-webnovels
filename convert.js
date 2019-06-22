@@ -26,7 +26,7 @@ async function convert(elements, index, steps) {
 		try {
 			var fileContent = fs.readFileSync(path.join(__dirname, "html", elements[index]), "utf8");
 
-			var reg = /(wuxiaworld|webnovel|liberspark)\.com/gi;
+			var reg = /(wuxiaworld|webnovel|liberspark|lightnovelstranslations|gravitytales)\.com/gi;
 			var siteMatch = reg.exec(fileContent);
 			if (siteMatch) {
 				site = siteMatch[1];
@@ -49,13 +49,26 @@ async function convert(elements, index, steps) {
 						path.join(__dirname, "templates", "webnovel", "strip.css")
 					];
 					break
+				case "gravitytales": 
+					reg = /<title.*?-(.*?)-\s+Gravity Tales</gis;					
+					includeFiles = [
+						path.join(__dirname, "templates", "gravitytales", "strip.css")
+					];
+					break
 				case "liberspark": 
 					reg = /property="og:title.*?content="(.*?)".*?>/gis;
-					m = reg.exec(fileContent);
-					//useFooter = false;		
+					m = reg.exec(fileContent);		
 					includeFiles = [
 						path.join(__dirname, "templates", "liberspark", "strip.css"),
 						path.join(__dirname, "templates", "liberspark", "strip.js")
+					];
+					break
+				case "lightnovelstranslations": 
+					reg = /property="og:title.*?content="(.*?)".*?>/gis;
+					m = reg.exec(fileContent);		
+					includeFiles = [
+						path.join(__dirname, "templates", "lightnovelstranslations", "strip.css"),				
+						path.join(__dirname, "templates", "lightnovelstranslations", "strip.js")
 					];
 					break
 				default: 

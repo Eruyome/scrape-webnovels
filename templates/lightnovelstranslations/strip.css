@@ -1,0 +1,41 @@
+.mtsnb, #topbar, #header-full, #secondary, #footer, .footnotereverse, .sharedaddy, .code-block, #comments, #textbox, #cookie-law-info-bar, #toTop, .cli-modal, button {
+	display: none !important;
+}
+.body {
+	padding-top: 0 !important;
+}
+div.page{
+	margin-bottom: 0 !important;
+}
+#content {
+	margin: 0 auto !important;
+	float: none !important;
+	width: 100% !important;
+	max-width: 1024px !important;
+	padding: 1px 35px 30px 35px !important;
+}
+
+html {
+	font-size: 12px;
+}
+#content h1.entry-title, #content h2.entry-title, .woocommerce-page h1.page-title {
+	font-size: 14px;	
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video 
+{
+	font-family: Merriweather, "Nunito Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.entry-content p {
+	line-height: 1.6;
+	margin: 0.5em 0 0 0;
+}
+
+hr + hr {
+	display: none !important;
+}
+
+.entry-title {
+	text-align: center;
+}
