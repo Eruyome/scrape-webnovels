@@ -17,7 +17,7 @@ if (!fs.existsSync(dir)){
 async function convert(elements, index, steps) {
 	if (elements[index]) {
 		var filename = elements[index].replace(/\.html$/, "");
-		var title = filename;
+		var title = filename.replace(/^_\s+[-:](.*)/gi, "$1").trim();
 		var site = "";
 		var useFooter = true;
 
@@ -26,7 +26,7 @@ async function convert(elements, index, steps) {
 		try {
 			var fileContent = fs.readFileSync(path.join(__dirname, "html", elements[index]), "utf8");
 
-			var reg = /(wuxiaworld|webnovel|liberspark|lightnovelstranslations|gravitytales)\.com/gi;
+			var reg = /(wuxiaworld|webnovel|liberspark|lightnovelstranslations|gravitytales|novelfull)\.com/gi;
 			var siteMatch = reg.exec(fileContent);
 			if (siteMatch) {
 				site = siteMatch[1];
@@ -63,6 +63,14 @@ async function convert(elements, index, steps) {
 						path.join(__dirname, "templates", "liberspark", "strip.js")
 					];
 					break
+				case "novelfull": 
+					reg = /name="title.*?content="(.*?)".*?>/gis;
+					m = reg.exec(fileContent);		
+					includeFiles = [
+						path.join(__dirname, "templates", "novelfull", "strip.css"),
+						path.join(__dirname, "templates", "novelfull", "strip.js")
+					];
+					break
 				case "lightnovelstranslations": 
 					reg = /property="og:title.*?content="(.*?)".*?>/gis;
 					m = reg.exec(fileContent);		
@@ -76,9 +84,10 @@ async function convert(elements, index, steps) {
 					break
 			}
 
-			var m = reg.exec(fileContent);			
+			var m = reg.exec(fileContent);	
 			if (m) {
 				title = m[1];
+				console.log(title)
 				if (typeof m[2] !== "undefined") {
 					title = title + m[2];
 				}

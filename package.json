@@ -27,7 +27,7 @@
     "rimraf": "^2.6.3",
     "save-dev": "^2.0.0",
     "single-line-log": "^1.1.2",
-    "sleep": "^6.0.0",
+    "sleep": "^6.1.0",
     "website-scraper": "^4.0.0",
     "yesno": "^0.2.0"
   }

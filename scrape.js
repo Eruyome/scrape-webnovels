@@ -32,6 +32,9 @@ switch (urlToplevel[1])  {
   case "lightnovelstranslations": 
     fp = "scrape_lnt.js"
     break
+  case "novelfull": 
+    fp = "scrape_novelfull.js"
+    break
   default: 
     fp = "";      
     break
