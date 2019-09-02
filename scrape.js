@@ -35,6 +35,9 @@ switch (urlToplevel[1])  {
   case "novelfull": 
     fp = "scrape_novelfull.js"
     break
+  case "readnovelfull": 
+    fp = "scrape_readnovelfull.js"
+    break
   default: 
     fp = "";      
     break

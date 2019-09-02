@@ -1,0 +1,67 @@
+body {
+	padding: 0 !important;
+}
+
+.header, .breadcrumb-container, button, .chr-nav, .adsbygoogle, .ads-holder, .footer, .bg-info.visible-md, .navbar-breadcrumb {
+	display: none !important;
+}
+
+.truyen-title, .chr-end, .chr-start, .cha-tit, .novel-title, table {
+	display: none !important;
+}
+
+#container, .container, #chr-content {
+	width: 100% !important;
+	padding: 0px;
+}
+
+html, body, #chr-content, .chr-title > .chr-text, .chr-title, em {
+	font-family: Merriweather, "Nunito Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size: 13px !important;
+}
+.chr-c h3, h2 {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+	font-size: 13px !important;
+}
+.chr-c h3 + br, .chr-c h2 + br {
+	display: none;
+}
+
+#chapter {
+	padding: 1px 35px 10px 35px;
+	text-align: left !important;
+}
+
+#chapter-content {
+	font-size: 13px !important;
+	line-height: 1.6 !important;
+	padding-top: 15px !important;
+}
+
+p {
+    margin: 0.7em 0 0 0 !important;
+}
+p + br, div + br, #chr-content br:first-child, #chr-content br:first-child + hr, hr + br, hr + br + br {
+	display: none;
+}
+
+.chr-c hr {
+    border-top: 1px solid rgb(43, 43, 43);
+}
+
+.chr-title > .chr-text {	
+	font-size: 15px !important;
+	padding: 1em !important;
+	line-height: 1.8 !important;
+}
+
+em {
+	font-family: Merriweather, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+#chr-content hr {
+	margin-top: 10px;
+    margin-bottom: 10px;
+}

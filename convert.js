@@ -26,7 +26,7 @@ async function convert(elements, index, steps) {
 		try {
 			var fileContent = fs.readFileSync(path.join(__dirname, "html", elements[index]), "utf8");
 
-			var reg = /(wuxiaworld|webnovel|liberspark|lightnovelstranslations|gravitytales|novelfull)\.com/gi;
+			var reg = /(wuxiaworld|webnovel|liberspark|lightnovelstranslations|gravitytales|readnovelfull|novelfull)\.com/gi;
 			var siteMatch = reg.exec(fileContent);
 			if (siteMatch) {
 				site = siteMatch[1];
@@ -37,9 +37,7 @@ async function convert(elements, index, steps) {
 				case "wuxiaworld":
 					reg = /property="og:title.*?content="(.*?)".*?>/gis;
 					m = reg.exec(fileContent);
-					includeFiles = [
-						path.join(__dirname, "html", "css", "main.css"),
-						path.join(__dirname, "html", "css", "custom.css"),				
+					includeFiles = [				
 						path.join(__dirname, "templates", "wuxiaworld", "strip.css")
 					]
 					break
@@ -69,6 +67,14 @@ async function convert(elements, index, steps) {
 					includeFiles = [
 						path.join(__dirname, "templates", "novelfull", "strip.css"),
 						path.join(__dirname, "templates", "novelfull", "strip.js")
+					];
+					break
+				case "readnovelfull": 
+					reg = /name="title.*?content="(.*?)".*?>/gis;
+					m = reg.exec(fileContent);		
+					includeFiles = [
+						path.join(__dirname, "templates", "readnovelfull", "strip.css"),
+						path.join(__dirname, "templates", "readnovelfull", "strip.js")
 					];
 					break
 				case "lightnovelstranslations": 

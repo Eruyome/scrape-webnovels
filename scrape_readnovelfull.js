@@ -19,7 +19,7 @@ try {
 }
 
 /*
-	http://novelfull.com/<novel-name>.html/ page to get chapter list (html response)
+	http://readnovelfull.com/<novel-name>.html/ page to get chapter list (html response)
 */
 var novelUrl = ""
 try {
@@ -43,16 +43,11 @@ request(novelUrl, function (error, response, body) {
 	if(typeof response !== 'undefined') {
 		const $ = cheerio.load(response.body);
 
-		var novel_title = $('.books .desc .title').text();
-
-		const pageCount = parseInt($('#list-chapter li.last').find('a').attr('data-page')) + 1;
-		const perPage = 50;
+		const novel_title = $('meta[name="og:title"]').attr('content');
+		const novelID = $('#rating').attr('data-novel-id');
 
 		var urlList = [];
-		for (let i = 1; i <= pageCount; i++) {
-			let pageUrl = novelUrl + "?page=" + i + "&per-page=" + perPage
-			urlList.push(pageUrl)
-		}
+		urlList.push("https://readnovelfull.com/ajax/chapter-archive?novelId=" + novelID)
 
 		let p = Promise.resolve();
 		p = p.then(() => {
@@ -78,24 +73,24 @@ request(novelUrl, function (error, response, body) {
 function parseHtml(response) {
 	const $ = cheerio.load(response.body);
 
-	const possibleChapterLinks = $('#list-chapter').find('.list-chapter').find('li').find('a');
+	const possibleChapterLinks = $('.panel-body').find('a');
 	var chapters = [];
 
 	$(possibleChapterLinks).each(function() {
 		var obj = {};
 		try {
-			obj.url = "http://novelfull.com" + $(this).attr("href");
+			obj.url = "http://readnovelfull.com" + $(this).attr("href");
 			var chap = $(this).attr("title");
 			try {
 				var tmp_chap = chap.replace(/Chatper(\s+?(\d+))/gi, "Chapter$1")
-				tmp_chap = tmp_chap.match(/(?:((?:Volume\s+?\d+\s+)?Chapter\s+?(\d+))|(.*))(?:(?:\s?[-–:]+)(.*))?/);
+				tmp_chap = tmp_chap.match(/(.*?)[-:](.*)|(.*)/);
 				if (tmp_chap[1]) {
 					obj.chapter_number = tmp_chap[1].trim();
+				} else if (tmp_chap[3]) {
+					obj.chapter_number = tmp_chap[3].trim();
 				}
-				if (tmp_chap[3]) {
-					obj.chapter_name = tmp_chap[3].trim();
-				} else if (tmp_chap[4]) {
-					obj.chapter_name = tmp_chap[4].trim();
+				if (tmp_chap[2]) {
+					obj.chapter_name = tmp_chap[2].trim();
 				}			
 			} catch(e) {
 				console.log(e)

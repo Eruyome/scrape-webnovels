@@ -1,12 +1,13 @@
-jQuery( document ).ready(function() {
+jQuery( document ).ready(function() {	
 	var p = jQuery( "#container" ).find( "p" );
 	jQuery(p).each(function( index ) {
 		var text = jQuery( this ).text().trim();
 		if (text == "&nbsp;" || text.length <= 0) {
 			jQuery(this).remove();
 		}
-		if (text.indexOf("Translator:") > -1 || text.indexOf("Editor:") > -1) {
-			jQuery(this).remove();
+		var re = new RegExp(/(Translator:|Editor:)/gi);
+		if (re.test(text)) {
+		    jQuery(this).remove();
 		}
 
 		var re = new RegExp(/Chapter \d+\s?(:|-)/);
@@ -17,13 +18,28 @@ jQuery( document ).ready(function() {
 		var st = jQuery(this).find( "strong" );
 		var thisP = jQuery(this);
 		jQuery(st).each(function( index ) {
-			var text = jQuery(this).text().trim();
-			if (text.indexOf("Translator:") > -1 || text.indexOf("Editor:") > -1) {
-				jQuery(thisP).remove();
+			var re = new RegExp(/(Translator:|Editor:|(thanks)? to the proofreading team)/gi);
+			if (re.test(text)) {
+			    jQuery(thisP).remove();
 			}
 		});
 	});
 
+	// combine chapter title with second header in case they are split up
+	var h = jQuery( "#chr-content" ).children().first();
+	console.log(h)
+	try {
+		if( h[0].nodeName.toLowerCase() === 'h3' || h[0].nodeName.toLowerCase() === 'h2' ) {
+		    console.log("yeah")
+		    var chrTitle = jQuery( ".chr-title > .chr-text" );
+			var chrTitleText = jQuery(chrTitle).text();
+			var headerText = jQuery(h).text();
+		    jQuery(chrTitle).text(chrTitleText + ' - ' + headerText)
+		    jQuery(h).css("display", "none");
+		}	
+	} catch (e) {}	
+
+	/*
 	var d = jQuery( "#container" ).find("div");
 	jQuery(d).each(function( index ) {
 		var text = jQuery( this )
@@ -38,4 +54,5 @@ jQuery( document ).ready(function() {
 		    jQuery(this).remove();
 		}
 	});
+	*/
 });
