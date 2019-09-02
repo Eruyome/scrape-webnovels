@@ -33,7 +33,7 @@ class MyPlugin {
 		registerAction('afterResponse', async ({response}) => {
 			var contentType = response.headers["content-type"];
 			var dots = [".", "..", "..."]
-			if (response.statusCode !== 200 && contentType.indexOf("text/html") > -1 && !resource.url.match(/\.(jpg)$/i)) {		
+			if (response.statusCode !== 200 && contentType.indexOf("text/html") > -1 && !resource.url.trim().match(/\.(jpg|png|gif|eot|ttf)$/i)) {		
 				log.clear();
 				console.log(`Status code ${response.statusCode} when trying to dl ${response.request.headers.referer}, contentType: ${contentType}`)	
 			} else {
@@ -96,6 +96,7 @@ if (!Array.isArray(jsondata)) {
 			var obj = {};
 			obj.url = line;
 			obj.filename = chapter_name.replace(/[\u4e00-\u9fff\u3400-\u4dff\uf900-\ufaff]/g, '');	// remove chinese characters; // doesn't work for all sites
+			obj.filename = chapter_name.replace(/[^a-zA-Z0-9;,.:! "'+&()\\\/<>|^-_#$%]/gi, '');
 			obj.filename = obj.filename.replace(/\(\)/g,'');
 			chapterArray.push(obj);
 			chapter_count = chapterArray.length;
@@ -107,13 +108,17 @@ if (!Array.isArray(jsondata)) {
 		var tmp = "";
 		if (typeof jsondata[key].chapter_name !== "undefined") {
 			jsondata[key].chapter_name = jsondata[key].chapter_name.replace(/[\u4e00-\u9fff\u3400-\u4dff\uf900-\ufaff]/g, '');
+			jsondata[key].chapter_name = jsondata[key].chapter_name.replace(/[^a-zA-Z0-9;,.:! "'+&()\\\/<>|^-_#$%]/gi, '');
 			jsondata[key].chapter_name = jsondata[key].chapter_name.replace(/\(\)/g,'');
-			tmp = jsondata[key].chapter_number + " - " + jsondata[key].chapter_name + ".html";	
+			if (typeof jsondata[key].chapter_number === "undefined") {
+				jsondata[key].chapter_number = "_"
+			}
+			tmp = jsondata[key].chapter_number + " - " + jsondata[key].chapter_name + ".html";
 		} else {
 			tmp = jsondata[key].chapter_number + ".html";
-		}
+		} 
 
-		tmp = tmp.replace(/[/\\?%*:|"<>]/g, '');		
+		tmp = tmp.replace(/[/\\?%*:|"<>]/g, '');
 		if (typeof jsondata[key].chapter_number !== "undefined") {
 			chapterObj.push({url: jsondata[key].url, filename: tmp});
 		}
@@ -123,7 +128,7 @@ if (!Array.isArray(jsondata)) {
 
 lineReader.on('close', function() {
 	if (chapterArray.length) {
-		download(chapterArray, "list");	
+		download(chapterArray, "list");
 	}	
 });
 
@@ -131,6 +136,7 @@ return
 
 function download(chapters, source) {
 	// https://www.npmjs.com/package/website-scraper
+
 	const options = {
 		urls: chapters,
 		directory: __dirname + "\\html\\",

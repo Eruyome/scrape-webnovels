@@ -2,14 +2,19 @@
 	display: none !important;
 }
 
-div.footer, div.panel-success, div.well, .nav-bar-area, .top-bar-area, .font-resize, .logo, .chapter-nav {
+div.footer, div.panel-success, div.well, .nav-bar-area, .top-bar-area, .font-resize, .logo, .chapter-nav, #wuxiaworld_BTF5 {
 	display: none !important;	
+}
+
+.main .container, #content-container {
+	width: 100% !important;
 }
 
 div.section-content {
 	font-family: Merriweather, "Nunito Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 	font-size: 16px !important;
 	line-height: 24px !important;
+	line-height: 1.6 !important;
 }
 
 em {
@@ -45,7 +50,7 @@ p {
 }
 
 .panel {
-	padding: 15px !important;
+	padding: 15px 35px !important;
 }
 
 .p-15 {
@@ -55,6 +60,10 @@ p {
 .section {
     margin-bottom: 0px !important;
     padding-bottom: 0px !important;
+}
+
+h4 {
+	margin-top: 0px !important;
 }
 
 hr:last-of-type {

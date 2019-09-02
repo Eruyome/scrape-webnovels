@@ -1,0 +1,55 @@
+body {
+	padding: 0 !important;
+}
+
+.header, .breadcrumb-container, button, .chapter-nav, .adsbygoogle, .footer, .bg-info.visible-md, .navbar-breadcrumb {
+	display: none !important;
+}
+
+.truyen-title, .chapter-end, .chapter-start, .cha-tit {
+	display: none !important;
+}
+
+.container {
+	width: 100% !important;
+}
+
+html, body, #chapter-content, .chapter-title > .chapter-text, .chapter-title, em {
+	font-family: Merriweather, "Nunito Sans", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+	font-size: 13px !important;
+}
+
+#chapter {
+	padding: 1px 35px 10px 35px;
+	text-align: left !important;
+}
+
+#chapter-content {
+	font-size: 13px !important;
+	line-height: 1.6 !important;
+	padding-top: 15px !important;
+}
+
+p {
+    margin: 0.7em 0 0 0 !important;
+}
+
+#chapter-content > div, .cha-content + div {
+	font-size: 11px !important;
+	margin: 1.4em !important;
+}
+
+h2 {
+	display: inline-block;
+	width: 100%;
+	text-align: center;
+}
+.chapter-title > .chapter-text {	
+	font-size: 15px !important;
+	padding: 1em !important;
+	line-height: 20px !important;
+}
+
+em {
+	font-family: Merriweather, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
